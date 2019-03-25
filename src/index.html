@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tab</title>
+  <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resources/css/bootflat.min.css">
+  <link rel="stylesheet" href="../resources/css/demo.css">
+
+  <style>
+    .nav-tabs > li > a.active {
+      background-color: #f5f7fa;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="tab-wrapper">
+    <div class="tab-headers">
+      <ul class="nav nav-tabs nav-justified">
+        <li class="tab-header"><a href="#tab1" class="t-header">Tab1</a></li>
+        <li class="tab-header"><a href="#tab2" class="t-header">Tab2</a></li>
+        <li class="tab-header"><a href="#tab3" class="t-header">Tab3</a></li>
+      </ul>
+    </div>
+    <div class="tab-contents">
+      <div class="panel panel-default" id="tab1">
+        <div class="panel-body">
+          탭 내용1
+        </div>
+      </div>
+      <div class="panel panel-default" id="tab2">
+        <div class="panel-body">
+          탭 내용2
+        </div>
+      </div>
+      <div class="panel panel-default" id="tab3">
+        <div class="panel-body">
+          탭 내용3
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./tab.js"></script>
+</body>
+</html>
