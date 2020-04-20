@@ -68,10 +68,19 @@ li {
           flex-direction: row;
 }
 
+.todo-lst li.completed {
+  color: #888888;
+  text-decoration: line-through;
+}
+
 .todo-lst .txt {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
+}
+
+.todo-lst .txt input[type="text"] {
+  width: 100%;
 }
 
 .todo-lst .btn {

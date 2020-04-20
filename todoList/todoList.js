@@ -1,19 +1,41 @@
 // input 내용 등록
 function onAddList() {
-  const inputValue = document.querySelector(".opt-input");
-  if (inputValue.value === '') {
+  const li = document.createElement("li");
+  const txtEl = document.createElement("div");
+  const btnEl = document.createElement("div");
+  const inputValue = document.querySelector(".opt-input").value;
+  const val = document.createTextNode(inputValue);
+  
+  var btn = document.createElement("button");
+  var btnTxt = document.createTextNode("수정");
+
+  txtEl.appendChild(val);
+  txtEl.classList.add("txt");
+  btn.appendChild(btnTxt);
+  btnEl.appendChild(btn);
+  btnEl.classList.add("btn");
+  
+  if (btn.getAttribute('onclick')) { //IE전용 객체 새로생성
+    btn.onclick = function(){ modifyList(this); }
+  } else {//IE 외 브라우저
+    btn.setAttribute('onclick','javascript:modifyList(this);');
+  }
+
+  li.appendChild(txtEl);
+  li.appendChild(btnEl);
+
+  if (inputValue === '') {
     alert("내용을 입력하세요.");
   } else {
     alert("입력한 내용이 저장 되었습니다.");
-    inputValue.value = '';
+    document.querySelector(".opt-input").value = '';
+    document.querySelector(".todo-lst").appendChild(li);
   }
 }
 
 // 편집
 let flag = false;
 function editList(e) {
-  const ele = document.querySelectorAll("ul li");
-
   if (!flag) {
     flag = true;
     e.innerText="취소";
@@ -28,10 +50,9 @@ function editList(e) {
     });
   }
 
-  ele.forEach( e => {
+  document.querySelectorAll(".todo-lst li").forEach( e => {
     const txt = e.children[0];
     const btn = e.children[1];
-    console.log(txt, btn)
     if (flag) {
       txt.innerHTML = '<label><input type="checkbox" name="chkList" />' + txt.innerText + "</label>";
       btn.classList.add("hide");
@@ -44,36 +65,35 @@ function editList(e) {
 
 // checkbox Hide
 function chkboxHide() {
-  const ele = document.querySelectorAll("ul li");
   flag = false;
   document.querySelector(".btn-edit").innerText = "편집";
   document.querySelectorAll(".edit-group").forEach( e => {
     e.classList.add("hide");
   });
 
-  ele.forEach( e => {
+  document.querySelectorAll(".todo-lst li").forEach( e => {
     const txt = e.children[0];
     const btn = e.children[1];
     txt.innerHTML = txt.innerText;
-    btn.classList.remove("hide");
+    if (!e.classList.contains("completed")) {
+      btn.classList.remove("hide");
+    }
   });
 }
 
 // 리스트 항목 삭제
 function removeList(e) {
-  const chkboxWrap = document.querySelector("ul");
-  const chkbox = document.querySelectorAll("input[type=checkbox]");
   let chk = false;
-  
-  chkbox.forEach( e => {
+
+  document.querySelectorAll("input[type=checkbox]").forEach( e => {
     if (e.checked === true) {
       chk = true;
-      chkboxWrap.removeChild(e.parentNode.parentNode.parentNode);
+      document.querySelector(".todo-lst").removeChild(e.parentNode.parentNode.parentNode);
     }
   });
 
   if (!chk) {
-    console.log("선택된 항목이 없습니다.");
+    alert("선택된 항목이 없습니다.");
   } else {
     chkboxHide();
     console.log("선택한 항목이 삭제 되었습니다.");
@@ -82,10 +102,9 @@ function removeList(e) {
 
 // 리스트 항목 완료
 function completedList() {
-  const chkbox = document.querySelectorAll("input[type=checkbox]");
   let chk = false;
 
-  chkbox.forEach( e => {
+  document.querySelectorAll("input[type=checkbox]").forEach( e => {
     if (e.checked === true) {
       chk = true;
       e.parentNode.parentNode.parentNode.classList.add("completed");
@@ -93,20 +112,18 @@ function completedList() {
   });
 
   if (!chk) {
-    console.log("선택된 항목이 없습니다.");
+    alert("선택된 항목이 없습니다.");
   } else {
     chkboxHide();
     console.log("선택한 항목이 완료 되었습니다.");
   }
-  
 }
 
 // 리스트 항목 진행
 function activeList() {
-  const chkbox = document.querySelectorAll("input[type=checkbox]");
   let chk = false;
 
-  chkbox.forEach( e => {
+  document.querySelectorAll("input[type=checkbox]").forEach( e => {
     if (e.checked === true) {
       chk = true;
       e.parentNode.parentNode.parentNode.classList.remove("completed");
@@ -114,7 +131,7 @@ function activeList() {
   });
 
   if (!chk) {
-    console.log("선택된 항목이 없습니다.");
+    alert("선택된 항목이 없습니다.");
   } else {
     chkboxHide();
     console.log("선택한 항목이 진행 상태로 전환 되었습니다.");
