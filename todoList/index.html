@@ -5,30 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-do List</title>
   <script src="./todoList.js"></script>
+  <link rel="stylesheet" href="./todoList.css">
 </head>
 <body>
-  <from>
-    <feidset>
-      <legend>To-do List</legend>
-      <input type="text" class="opt-input" placeholder="할 일을 등록하세요." />
-      <button onclick="onAddList()">등록</button>
-    </feidset>
-  </from>
 
-  <div class="btn-set">
-    <button>편집</button>
-    <button onclick="removeList()">삭제</button>
-    <button onclick="completedList()">완료</button>
-    <button onclick="activeList()">진행</button>
+  <div class="wrapper">
+    <from class="registration">
+      <feidset>
+        <legend>To-do List</legend>
+        <div class="write-box">
+          <input type="text" class="opt-input" placeholder="할 일을 등록하세요." />
+          <button onclick="onAddList()">등록</button>
+        </div>
+      </feidset>
+    </from>
+
+    <div class="btn-set">
+      <div class="left">
+        <button class="btn-edit" onclick="editList(this)">편집</button>
+        <button class="edit-group hide" onclick="removeList()">선택 삭제</button>
+      </div>
+      <div class="right">
+        <button class="edit-group hide" onclick="completedList()">완료</button>
+        <button class="edit-group hide" onclick="activeList()">진행</button>
+      </div>
+    </div>
+    
+    <ul class="todo-lst">
+      <li>
+        <div class="txt">저장된 할 일 리스트가 들어갈 곳</div>
+        <div class="btn">
+          <button onclick="modifyList(this)">수정</button>
+        </div>
+      </li>
+      <li>
+        <div class="txt">저장된 할 일 리스트가 들어갈 곳</div>
+        <div class="btn">
+          <button onclick="modifyList(this)">수정</button>
+        </div>
+      </li>
+      <li>
+        <div class="txt">저장된 할 일 리스트가 들어갈 곳</div>
+        <div class="btn">
+          <button onclick="modifyList(this)">수정</button>
+        </div>
+      </li>
+      <li>
+        <div class="txt">저장된 할 일 리스트가 들어갈 곳</div>
+        <div class="btn">
+          <button onclick="modifyList(this)">수정</button>
+        </div>
+      </li>
+      <li>
+        <div class="txt">저장된 할 일 리스트가 들어갈 곳</div>
+        <div class="btn">
+          <button onclick="modifyList(this)">수정</button>
+        </div>
+      </li>
+    </ul>
   </div>
-  
-  <div>Total: <span>0</span>, Ongoing: <span>0</span> Completed: <span>0</span></div>
-  <ul>
-    <li><label><input type="checkbox" name="chkList" /> 저장된 할 일 리스트가 들어갈 곳</label></li>
-    <li><label><input type="checkbox" name="chkList" /> 저장된 할 일 리스트가 들어갈 곳</label></li>
-    <li><label><input type="checkbox" name="chkList" /> 저장된 할 일 리스트가 들어갈 곳</label></li>
-    <li><label><input type="checkbox" name="chkList" /> 저장된 할 일 리스트가 들어갈 곳</label></li>
-    <li><label><input type="checkbox" name="chkList" /> 저장된 할 일 리스트가 들어갈 곳</label></li>
-  </ul>
 </body>
 </html>

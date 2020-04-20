@@ -1,0 +1,89 @@
+.wrapper {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.registration legend {
+  text-align: center;
+}
+
+.registration .write-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-top: 10px;
+}
+
+.registration .opt-input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.registration button {
+  width: 50px;
+}
+
+.btn-set {
+  position: relative;
+  margin: 20px 0;
+}
+
+.btn-set::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.btn-set .left {
+  float: left;
+}
+
+.btn-set .right {
+  float: right;
+}
+
+.btn-set .hide {
+  display: none;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-lst li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.todo-lst .txt {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.todo-lst .btn {
+  width: 50px;
+  text-align: right;
+}
+
+.todo-lst .btn.hide {
+  display: none;
+}
+
+.todo-lst .modify .btn {
+  width: 100px;
+}
+/*# sourceMappingURL=todoList.css.map */

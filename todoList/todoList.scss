@@ -1,0 +1,75 @@
+// style
+.wrapper {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.registration {
+  legend {
+    text-align: center;
+  }
+  .write-box {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+  }
+  .opt-input {
+    flex: 1 1 auto;
+  }
+  button {
+    width: 50px;
+  }
+}
+
+.btn-set {
+  position: relative;
+  margin: 20px 0;
+
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
+
+  .hide {
+    display: none;
+  }
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-lst {
+  li {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .txt {
+    flex: 1 1 auto;
+  }
+
+  .btn {
+    width: 50px;
+    text-align: right;
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  .modify .btn {
+    width: 100px;
+  }
+}
