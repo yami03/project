@@ -80,7 +80,7 @@ window.onload = function () {
       if (e.checked === true) {
         chk = true;
         
-        if (state === 'completed') {
+        if (state === 'delete') {
           document.querySelector(".todo-lst").removeChild(target);
         } else if (state === 'completed') {
           target.classList.add("completed");
@@ -92,13 +92,13 @@ window.onload = function () {
 
     if (state === 'delete') txt = '삭제';
     else if (state === 'completed') txt = '완료';
-    else if (state === 'active') txt = '진행';
+    else if (state === 'active') txt = '진행으로 변경';
 
     if (!chk) {
       alert("선택된 항목이 없습니다.");
     } else {
       chkboxHide();
-      alert("선택한 항목이 " + txt + "상태로 전환 되었습니다.");
+      alert("선택한 항목이 " + txt + "되었습니다.");
     }
   }
 
@@ -123,6 +123,7 @@ window.onload = function () {
   // 리스트 수정
   let defaultValue;
   const btnModify = document.querySelectorAll('.btn-modify');
+  // let mmm = false;
   btnModify.forEach(e => {
     e.addEventListener('click', function (e) {
       const btnTarget = e.target;
@@ -139,8 +140,9 @@ window.onload = function () {
         btnEdit.setAttribute("disabled", "");
         modifyTxt.innerHTML = '<input type="text" value="' + modifyTxt.innerText + '" />';
         btnTarget.insertAdjacentHTML('afterend', '<button class="btn-cancle">취소</button>');
-        setBtnCancle();
+        setBtnCancle(btnTarget);
       } else {
+        console.log("mod>>>", flag);
         flag = false;
         btnTarget.innerText = "수정";
         btnTarget.nextElementSibling.remove();
@@ -151,18 +153,19 @@ window.onload = function () {
       }
     });
   });
+
   // 리스트 수정 취소
-  function setBtnCancle() {
-    const btnCancle = document.querySelector('.btn-cancle');
+  function setBtnCancle(e) {
+    const btnCancle = e.nextElementSibling;
+
     btnCancle.addEventListener('click', function (e) {
-      console.log("6463");
       const btnTarget = e.target;
       const btnWrap = btnTarget.parentNode.parentNode;
       const modifyTxt = btnWrap.children[0];
       flag = false;
       btnTarget.previousElementSibling.innerText = "수정";
-      btnWrap.classList.remove("modify")
       btnTarget.remove();
+      btnWrap.classList.remove("modify")
       document.querySelector(".btn-edit").setAttribute("enabled", "");
       document.querySelector(".btn-edit").removeAttribute("disabled", "");
       modifyTxt.innerHTML = defaultValue;
