@@ -1,10 +1,69 @@
 import React, { Component } from 'react'; 
+import { v4 as uuidv4 } from 'uuid';
 import { Button, Icon, Input, Header, Segment, Grid } from 'semantic-ui-react'
 import './style.scss';
-// import { v4 as uuidv4 } from 'uuid';
+import Tree from './components/Tree';
 
 class App extends Component {
+  
+  state = {
+    bookMark: [
+      { name: '폴더명 1', id: uuidv4(), open: false, children: []},
+      { name: '폴더명 2', id: uuidv4(), open: false, children: [
+        { name: '폴더명 2-1', id: uuidv4() },
+        { name: '폴더명 2-2', id: uuidv4(), children: [
+          { name: '폴더명 2-2-1', id: uuidv4() },
+          { name: '폴더명 2-2-2', id: uuidv4() },
+          { name: '폴더명 2-2-3', id: uuidv4() },
+        ]},
+      ]},
+      { name: '폴더명 3', id: uuidv4(), open: false, children: [
+        { name: '폴더명 3-1', id: uuidv4() },
+        { name: '폴더명 3-2', id: uuidv4(), children: [
+          { name: '폴더명 3-2-1', id: uuidv4() },
+          { name: '폴더명 3-2-2', id: uuidv4() },
+          { name: '폴더명 3-2-3', id: uuidv4() },
+        ]},
+        { name: '폴더명 3-3', id: uuidv4() },
+      ]},
+      { name: '폴더명 4', id: uuidv4(), open: false, children: [
+        { name: '폴더명 4-1', id: uuidv4() },
+        { name: '폴더명 4-2', id: uuidv4() },
+        { name: '폴더명 4-3', id: uuidv4() },
+        { name: '폴더명 4-4', id: uuidv4() },
+        { name: '폴더명 4-5', id: uuidv4() },
+      ]},
+      { name: '폴더명 5', id: uuidv4(), open: false, children: []},
+    ],
+  };
+
+  renderBookmark = (data) => data.map((d, i) => {
+    // console.log(d, i);
+    if ( d.children && d.children.length > 0 ) {
+      return (
+        <Tree.Item
+          title={d.name}
+          id={d.id}
+          key={i}
+        >
+          {
+            this.renderBookmark(d.children)
+          }
+        </Tree.Item>
+      );
+    } else {
+      return (
+        <Tree.Item
+          title={d.name}
+          id={d.id}
+          key={i}
+        />
+      );
+    }
+  });
+
   render() {
+    const { bookMark } = this.state;
     return (
       <Segment>
         <Header>
@@ -15,151 +74,16 @@ class App extends Component {
         </Header>
         <Grid>
           <Grid.Column width={6}>
-            <div className="tree-wrapper">
-              <ul>
-                <li className="tree-node tree-node-parent tree-node-expanded">
-                  <div className="tree-text">
-                    <div className="tree-func tree-collapse">
-                      <Button
-                        className="tree-collapse-btn"
-                        icon="caret down"
-                      />
-                    </div>
-                    <div className="tree-bare-label">
-                      <Icon name="folder" />
-                      <div>트리구조</div>
-                    </div>
-                  </div>
-                  <ul>
-                    <li className="tree-node tree-node-parent tree-node-expanded">
-                      <div className="tree-text">
-                        <div className="tree-func tree-collapse">
-                          <Button
-                            className="tree-collapse-btn"
-                            icon="caret down"
-                          />
-                        </div>
-                        <div className="tree-bare-label tree-node-selected">
-                          <Icon name="folder" />
-                          <div>트리구조</div>
-                        </div>
-                      </div>
-                      <ul>
-                        <li className="tree-node rct-node-leaf">
-                          <div className="tree-text">
-                            <div className="tree-func tree-collapse">
-                              <Button
-                                className="tree-collapse-btn"
-                                icon="caret down"
-                              />
-                            </div>
-                            <div className="tree-bare-label">
-                              <Icon name="folder" />
-                              <div>트리구조</div>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="tree-node rct-node-leaf">
-                          <div className="tree-text">
-                            <div className="tree-func tree-collapse">
-                              <Button
-                                className="tree-collapse-btn"
-                                icon="caret down"
-                              />
-                            </div>
-                            <div className="tree-bare-label">
-                              <Icon name="folder" />
-                              <div>
-                                <Input />
-                                <Button basic>확인 </Button>
-                                <Button basic>취소 </Button>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="tree-node tree-node-parent tree-node-collapsed">
-                      <div className="tree-text">
-                        <div className="tree-func tree-collapse">
-                          <Button
-                            className="tree-collapse-btn"
-                            icon="caret right"
-                          />
-                        </div>
-                        <div className="tree-bare-label">
-                          <Icon name="folder" />
-                          <div>
-                            <Input />
-                            <Button basic>확인 </Button>
-                            <Button basic>취소 </Button>
-                          </div>
-                        </div>
-                      </div>
-                      <ul>
-                        <li className="tree-node rct-node-leaf">
-                          <div className="tree-text">
-                            <div className="tree-func tree-collapse">
-                              <Button
-                                className="tree-collapse-btn"
-                                icon="caret down"
-                              />
-                            </div>
-                            <div className="tree-bare-label">
-                              <Icon name="folder" />
-                              <div>트리구조</div>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="tree-node rct-node-leaf">
-                          <div className="tree-text">
-                            <div className="tree-func tree-collapse">
-                              <Button
-                                className="tree-collapse-btn"
-                                icon="caret down"
-                              />
-                            </div>
-                            <div className="tree-bare-label">
-                              <Icon name="folder" />
-                              <div>
-                                <Input />
-                                <Button basic>확인 </Button>
-                                <Button basic>취소 </Button>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li className="tree-node rct-node-leaf">
-                  <div className="tree-text">
-                    <div className="tree-func tree-collapse">
-                      <Button
-                        className="tree-collapse-btn"
-                        icon="caret down"
-                      />
-                    </div>
-                    <div className="tree-bare-label">
-                      <Icon name="folder" />
-                      <div>
-                        <Input />
-                        <Button basic>확인 </Button>
-                        <Button basic>취소 </Button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <Tree>
+              {this.renderBookmark(bookMark)}
+            </Tree>
           </Grid.Column>
           <Grid.Column width={10}>
             <div className="page-list">
               <ul>
                 <li className="item">
                   <Icon name="desktop" />text text text text texttext text texttext text
-                  <Button className="closed" />
+                  <Button className="closed" icon="close" />
                 </li>
               </ul>
             </div>

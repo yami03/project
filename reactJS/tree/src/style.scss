@@ -96,6 +96,7 @@ li {
     display: block;
     min-height: 20px;
     padding: 4px 4px;
+    white-space: nowrap;
 
     .tree-collapse,
     .tree-bare-label {
@@ -126,8 +127,6 @@ li {
   }
 
   .tree-bare-label {
-    white-space: nowrap;
-
     &.tree-node-selected span {
       color: #0263c5;
     }
